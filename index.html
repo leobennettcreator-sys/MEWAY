@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#111214">
+<title>MEWAY — Digital Store</title>
+<style>
+:root{--bg:#101113;--panel:#191a1d;--text:#f3f3f4;--muted:#a3a5aa;--line:#303238;--silver:#c9cbd0}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#24262b 0,#101113 48%);color:var(--text);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+.wrap{max-width:1120px;margin:auto;padding:22px}header{display:flex;align-items:center;justify-content:space-between;padding:10px 0 24px;border-bottom:1px solid var(--line)}
+.brand{font-size:24px;letter-spacing:5px;font-weight:800}.brand span{color:var(--silver)}.status{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:8px 12px}
+.hero{padding:62px 0 44px;max-width:700px}.eyebrow{color:var(--silver);text-transform:uppercase;letter-spacing:3px;font-size:11px}h1{font-size:clamp(42px,8vw,76px);line-height:.98;letter-spacing:-3px;margin:18px 0}.hero p{color:var(--muted);font-size:17px;line-height:1.6;max-width:560px}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:18px 0}.section-head h2{font-size:25px;margin:0}.section-head span{font-size:13px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:48px}.card{border:1px solid var(--line);background:linear-gradient(145deg,#202125,#161719);border-radius:18px;padding:20px;min-height:210px;display:flex;flex-direction:column}
+.symbol{width:46px;height:46px;border-radius:13px;background:#303237;display:grid;place-items:center;font-size:21px;margin-bottom:22px}.card h3{font-size:18px;margin:0 0 8px}.card p{font-size:13px;line-height:1.5;color:var(--muted);margin:0 0 18px;flex:1}
+.bottom{display:flex;justify-content:space-between;align-items:center;gap:8px}.price{font-weight:700;color:#e6e7e9}button{background:var(--silver);color:#111214;border:0;border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer}button:hover{opacity:.88}
+.note{border:1px solid var(--line);border-radius:14px;padding:16px;color:var(--muted);font-size:13px;line-height:1.6;margin-bottom:28px}footer{border-top:1px solid var(--line);padding:20px 0;color:#777a80;font-size:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media(max-width:720px){.wrap{padding:16px}.hero{padding:46px 0 32px}h1{letter-spacing:-2px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card{padding:15px;min-height:220px}.status{font-size:10px}}@media(max-width:460px){.grid{grid-template-columns:1fr}.card{min-height:190px}.section-head h2{font-size:21px}}
+</style></head>
+<body><div class="wrap">
+<header><div class="brand">ME<span>WAY</span></div><div class="status">DIGITAL STORE · DEMO</div></header>
+<main><section class="hero"><div class="eyebrow">Digital goods, thoughtfully selected</div><h1>Your digital.<br>Redefined.</h1><p>Цифровые товары в одном месте. Выбери категорию и отправь запрос через Telegram. Сейчас каталог демонстрационный — покупка и оплата ещё не подключены.</p></section>
+<div class="section-head"><h2>Каталог</h2><span>Демонстрационные товары</span></div><section class="grid" id="catalog"></section>
+<div class="note">Важно: товары и цены на этой странице — примеры для дизайна. Кнопки не принимают оплату и не выдают товары автоматически. Для реальных продаж потребуется проверенный поставщик и безопасный платёжный провайдер.</div></main>
+<footer><span>© MEWAY</span><span>Graphite + Silver · Digital Store</span></footer></div>
+<script>
+const products=[
+{icon:"✦",title:"Telegram Premium",desc:"Демонстрационная карточка подписки.",price:"Цена уточняется"},
+{icon:"★",title:"Telegram Stars",desc:"Демонстрационная карточка цифровой валюты Telegram.",price:"Цена уточняется"},
+{icon:"◇",title:"Telegram Gifts",desc:"Демонстрационная карточка цифровых подарков.",price:"Цена уточняется"},
+{icon:"⌘",title:"Digital services",desc:"Место для дополнительных цифровых услуг.",price:"Цена уточняется"},
+{icon:"◎",title:"Top-up",desc:"Категория для будущих пополнений.",price:"Цена уточняется"},
+{icon:"＋",title:"More coming",desc:"Каталог можно расширить позже.",price:"Скоро"}];
+const catalog=document.getElementById("catalog");
+products.forEach(p=>{const card=document.createElement("article");card.className="card";
+card.innerHTML=`<div class="symbol">${p.icon}</div><h3>${p.title}</h3><p>${p.desc}</p><div class="bottom"><span class="price">${p.price}</span><button type="button">Скоро</button></div>`;
+card.querySelector("button").addEventListener("click",()=>{const tg=window.Telegram&&window.Telegram.WebApp;if(tg)tg.showAlert("Покупки пока не подключены. Это демонстрационный каталог MEWAY.");else alert("Покупки пока не подключены. Это демонстрационный каталог MEWAY.");});catalog.appendChild(card);});
+</script><script src="https://telegram.org/js/telegram-web-app.js"></script><script>if(window.Telegram&&window.Telegram.WebApp)window.Telegram.WebApp.ready();</script>
+</body></html>
